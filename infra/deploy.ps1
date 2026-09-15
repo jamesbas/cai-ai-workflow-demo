@@ -20,10 +20,10 @@ param(
   [string]$EnvironmentName = "cae-cai-demo2",
   [string]$AppName        = "ca-cai-demo2",
   [string]$ImageRepo      = "cai-demo2",
-  [string]$FoundryProjectEndpoint = "https://jamesbas-demo-project-resource.services.ai.azure.com/api/projects/jamesbas-demo-project",
-  [string]$FoundryModel   = "gpt-5.6-terra",
+  [string]$FoundryProjectEndpoint = "",
+  [string]$FoundryModel   = "",
   [string]$FoundryVisionModel = "",
-  [string]$FoundryAccountName = "jamesbas-demo-project-resource",
+  [string]$FoundryAccountName = "",
   [string[]]$FoundryRoles = @("Foundry User", "Cognitive Services OpenAI User")
 )
 
@@ -64,7 +64,48 @@ function Assert-Az([string]$What, [string[]]$Arguments) {
   }
 }
 
+# Settings resolve in order: explicit parameter, .env.local, process environment.
+$localEnv = @{}
+$envFile = Join-Path $repoRoot ".env.local"
+if (Test-Path $envFile) {
+  foreach ($line in Get-Content $envFile) {
+    if ($line -match '^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$') {
+      $localEnv[$Matches[1]] = $Matches[2]
+    }
+  }
+}
+
+function Resolve-Setting([string]$Current, [string]$Key, [string]$Fallback = "") {
+  if ($Current) { return $Current }
+  if ($localEnv.ContainsKey($Key) -and $localEnv[$Key]) { return $localEnv[$Key] }
+  $fromEnv = [Environment]::GetEnvironmentVariable($Key)
+  if ($fromEnv) { return $fromEnv }
+  return $Fallback
+}
+
 try {
+  # 0. Foundry settings -------------------------------------------------------
+  $FoundryProjectEndpoint = Resolve-Setting $FoundryProjectEndpoint "FOUNDRY_PROJECT_ENDPOINT"
+  $FoundryModel = Resolve-Setting $FoundryModel "FOUNDRY_MODEL"
+  $FoundryVisionModel = Resolve-Setting $FoundryVisionModel "FOUNDRY_VISION_MODEL"
+
+  if (-not $FoundryProjectEndpoint) {
+    throw "FOUNDRY_PROJECT_ENDPOINT is not set. Copy .env.local.example to .env.local and fill it in, or pass -FoundryProjectEndpoint."
+  }
+  if (-not $FoundryModel) {
+    throw "FOUNDRY_MODEL is not set. Copy .env.local.example to .env.local and fill it in, or pass -FoundryModel."
+  }
+
+  if (-not $FoundryAccountName) {
+    # https://<account>.services.ai.azure.com/api/projects/<project>
+    $FoundryAccountName = ([System.Uri]$FoundryProjectEndpoint).Host.Split(".")[0]
+  }
+
+  Step "Foundry configuration"
+  Write-Host "    endpoint: $FoundryProjectEndpoint"
+  Write-Host "    resource: $FoundryAccountName"
+  Write-Host "    model:    $FoundryModel"
+
   # 1. Subscription -----------------------------------------------------------
   Step "Selecting subscription"
   if (-not $SubscriptionId) {

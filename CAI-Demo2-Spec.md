@@ -105,7 +105,7 @@ Use the following existing Azure resources.
 
 ### 4.1 Subscription
 
-- **Subscription name:** `ME-MngEnvMCAP365575-jamesbas-1`
+- **Subscription name:** `<your-subscription-name>`
 - **Subscription ID:** `<your-subscription-id>`
 
 ### 4.2 Resource group
@@ -117,17 +117,17 @@ All new Azure resources for this demo must be created inside `rgCAI`.
 ### 4.3 Microsoft Foundry project
 
 - **Project endpoint:**  
-  `https://jamesbas-demo-project-resource.services.ai.azure.com/api/projects/jamesbas-demo-project`
+  `https://<your-foundry-resource>.services.ai.azure.com/api/projects/<your-project>`
 
 ### 4.4 Preferred model deployment
 
 - **Deployment/model name:** `gpt-5.6-terra`
 - **Provided resource Responses endpoint:**  
-  `https://jamesbas-demo-project-resource.services.ai.azure.com/openai/v1/responses`
+  `https://<your-foundry-resource>.services.ai.azure.com/openai/v1/responses`
 
 For application code, prefer the **Foundry project endpoint** and append `/openai/v1` when creating the OpenAI-compatible client:
 
-`https://jamesbas-demo-project-resource.services.ai.azure.com/api/projects/jamesbas-demo-project/openai/v1`
+`https://<your-foundry-resource>.services.ai.azure.com/api/projects/<your-project>/openai/v1`
 
 This keeps the application project-scoped and aligns with current Foundry SDK/OpenAI-client patterns.
 
@@ -1228,7 +1228,7 @@ Create `.env.example` with:
 AZURE_SUBSCRIPTION_ID=<your-subscription-id>
 AZURE_RESOURCE_GROUP=rgCAI
 
-FOUNDRY_PROJECT_ENDPOINT=https://jamesbas-demo-project-resource.services.ai.azure.com/api/projects/jamesbas-demo-project
+FOUNDRY_PROJECT_ENDPOINT=https://<your-foundry-resource>.services.ai.azure.com/api/projects/<your-project>
 FOUNDRY_MODEL=gpt-5.6-terra
 
 DATABASE_PATH=/app/data/cai-demo2.db

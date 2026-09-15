@@ -162,6 +162,18 @@ See [.env.example](.env.example). Nothing in this list is a secret.
 ./infra/deploy.sh
 ```
 
+Nothing environment-specific is hard-coded. Both scripts resolve settings in
+this order: explicit parameter/variable, then `.env.local`, then the process
+environment. `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL` are required and
+the script fails fast if they are missing. The Foundry resource name is derived
+from the endpoint host, and the subscription falls back to your current
+`az login`.
+
+```powershell
+# or override per run, without touching .env.local
+./infra/deploy.ps1 -SubscriptionId <id> -FoundryProjectEndpoint <url> -FoundryModel <deployment>
+```
+
 The script is idempotent and will: select the subscription, confirm `rgCAI`,
 create the ACR and Container Apps environment if absent, build the image in
 ACR, create or update the Container App with a system-assigned managed

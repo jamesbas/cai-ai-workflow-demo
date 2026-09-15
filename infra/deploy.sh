@@ -4,19 +4,39 @@
 # No API keys are created, stored, or configured anywhere in this script.
 set -euo pipefail
 
-SUBSCRIPTION_ID="${SUBSCRIPTION_ID:-$(az account show --query id -o tsv)}"
-RESOURCE_GROUP="${RESOURCE_GROUP:-rgCAI}"
+cd "$(dirname "$0")/.."
+
+# Settings resolve in order: process environment, .env.local, default.
+if [[ -f .env.local ]]; then
+  set -a
+  # shellcheck disable=SC1091
+  source .env.local
+  set +a
+fi
+
+SUBSCRIPTION_ID="${AZURE_SUBSCRIPTION_ID:-${SUBSCRIPTION_ID:-$(az account show --query id -o tsv)}}"
+RESOURCE_GROUP="${AZURE_RESOURCE_GROUP:-${RESOURCE_GROUP:-rgCAI}}"
 ACR_NAME="${ACR_NAME:-}"
 ENVIRONMENT_NAME="${ENVIRONMENT_NAME:-cae-cai-demo2}"
 APP_NAME="${APP_NAME:-ca-cai-demo2}"
 IMAGE_REPO="${IMAGE_REPO:-cai-demo2}"
-FOUNDRY_PROJECT_ENDPOINT="${FOUNDRY_PROJECT_ENDPOINT:-https://jamesbas-demo-project-resource.services.ai.azure.com/api/projects/jamesbas-demo-project}"
-FOUNDRY_MODEL="${FOUNDRY_MODEL:-gpt-5.6-terra}"
+FOUNDRY_PROJECT_ENDPOINT="${FOUNDRY_PROJECT_ENDPOINT:-}"
+FOUNDRY_MODEL="${FOUNDRY_MODEL:-}"
 FOUNDRY_VISION_MODEL="${FOUNDRY_VISION_MODEL:-}"
-FOUNDRY_ACCOUNT_NAME="${FOUNDRY_ACCOUNT_NAME:-jamesbas-demo-project-resource}"
+FOUNDRY_ACCOUNT_NAME="${FOUNDRY_ACCOUNT_NAME:-}"
 FOUNDRY_ROLES=("Foundry User" "Cognitive Services OpenAI User")
 
-cd "$(dirname "$0")/.."
+if [[ -z "$FOUNDRY_PROJECT_ENDPOINT" || -z "$FOUNDRY_MODEL" ]]; then
+  echo "FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL must be set." >&2
+  echo "Copy .env.local.example to .env.local and fill it in, or export them." >&2
+  exit 1
+fi
+
+if [[ -z "$FOUNDRY_ACCOUNT_NAME" ]]; then
+  # https://<account>.services.ai.azure.com/api/projects/<project>
+  FOUNDRY_ACCOUNT_NAME="$(printf '%s' "$FOUNDRY_PROJECT_ENDPOINT" | sed -E 's#^https?://([^.]+)\..*#\1#')"
+fi
+
 step() { printf '\n==> %s\n' "$1"; }
 
 step "Selecting subscription $SUBSCRIPTION_ID"

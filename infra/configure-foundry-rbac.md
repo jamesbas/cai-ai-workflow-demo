@@ -35,7 +35,7 @@ The deployment scripts try `Foundry User` first, then
 SUBSCRIPTION_ID=<your-subscription-id>
 RESOURCE_GROUP=rgCAI
 APP_NAME=ca-cai-demo2
-FOUNDRY_ACCOUNT=jamesbas-demo-project-resource
+FOUNDRY_ACCOUNT=<your-foundry-resource>
 
 az account set --subscription $SUBSCRIPTION_ID
 
