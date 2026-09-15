@@ -1,0 +1,30 @@
+{
+  "scenarioId": "SCENARIO-POOL-GATE",
+  "analysis": {
+    "issueCategory": "POOL_GATE",
+    "assetType": "pool_gate",
+    "locationHint": "East Pool Entrance",
+    "observations": [
+      "A metal pedestrian gate at a fenced pool enclosure is visible in an open position.",
+      "The gate leaf does not appear to be aligned with the latch post."
+    ],
+    "residentReportedFacts": [
+      "The resident states the gate will not latch.",
+      "The resident states the gate swings open again after being closed.",
+      "The resident states they attempted to close it twice."
+    ],
+    "suggestedUrgency": "HIGH",
+    "urgencyReason": "A controlled-access pool gate that does not secure may create a safety and access-control concern for the community.",
+    "confidence": "MEDIUM",
+    "missingInformation": [
+      "A close-up photo of the latch assembly would confirm whether the latch or the alignment is the failure point."
+    ],
+    "requiresHumanReview": true
+  },
+  "draft": {
+    "workOrderTitle": "East Pool Entry Gate Will Not Latch",
+    "workOrderDescription": "Inspect the east pool entry gate (asset PG-002) and its latch assembly. The gate was photographed in an open position and the resident reports it will not latch and swings back open. Latch alignment was adjusted on 2026-08-12 and hinges were serviced on 2026-05-03, so check whether the prior adjustment has shifted. Verify self-closing and self-latching operation against pool access-control requirements before leaving the site. The asset is under warranty through 2027-05-31 with SecureGate Systems; confirm warranty coverage before any billable parts are ordered.",
+    "residentAcknowledgement": "Thank you for reporting the east pool gate. Your request has been received and is being reviewed by the management team. We have a record of this gate and its recent service history, and a manager will confirm next steps shortly. Please do not attempt to repair or force the gate yourself.",
+    "managerSummary": "The request appears to involve the east pool entry gate (PG-002), which is still under warranty with SecureGate Systems and had a latch adjustment last month. The photo shows the gate open but does not by itself prove the latch failed. Confirm whether this is a recurrence of the August adjustment before approving billable work."
+  }
+}

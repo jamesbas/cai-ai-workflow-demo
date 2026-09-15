@@ -1,0 +1,15 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+*.tsbuildinfo
+next-env.d.ts
+AGENTS.md
+CLAUDE.md
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+screenshots/*.png
+!screenshots/.gitkeep

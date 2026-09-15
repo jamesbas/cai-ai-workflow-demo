@@ -1,0 +1,29 @@
+{
+  "scenarioId": "SCENARIO-TRAIL-LIGHT",
+  "analysis": {
+    "issueCategory": "SITE_LIGHTING",
+    "assetType": "site_light",
+    "locationHint": "East Walking Trail",
+    "observations": [
+      "A pole-mounted area light is visible at a path intersection and is not illuminated.",
+      "No exposed wiring or physical damage to the pole is visible in the image."
+    ],
+    "residentReportedFacts": [
+      "The resident states the light has been out for two nights.",
+      "The resident reports the location as the east trail intersection."
+    ],
+    "suggestedUrgency": "MEDIUM",
+    "urgencyReason": "An unlit path intersection reduces night-time visibility for residents, but no exposed wiring or immediate electrical hazard is visible.",
+    "confidence": "MEDIUM",
+    "missingInformation": [
+      "Whether nearby lights on the same circuit are also out, which would indicate a circuit rather than a fixture failure."
+    ],
+    "requiresHumanReview": true
+  },
+  "draft": {
+    "workOrderTitle": "Walking Trail Pole Light 9 Out at East Trail Intersection",
+    "workOrderDescription": "Inspect walking trail pole light 9 (asset LIGHT-009) at the east trail intersection. The fixture is reported out for two consecutive nights. The LED driver was replaced and dusk-to-dawn control verified on 2026-04-11. Check the photocell, driver, and circuit, and confirm whether adjacent fixtures on the same circuit are affected. Report any exposed wiring immediately.",
+    "residentAcknowledgement": "Thank you for reporting the trail light at the east intersection. Your request has been received and is being reviewed by the management team. A manager will confirm next steps shortly.",
+    "managerSummary": "The request appears to involve pole light LIGHT-009, which had driver and photocell work in April. There is no warranty on file, so routing defaults to the approved electrical vendor. Confirm whether other trail lights are also out before scheduling a single-fixture repair."
+  }
+}

@@ -1,0 +1,13 @@
+node_modules
+.next
+.git
+.github
+data/*.db
+data/*.db-*
+screenshots
+tests
+*.md
+!README.md
+.env
+.env.local
+.vscode

@@ -1,0 +1,29 @@
+{
+  "scenarioId": "SCENARIO-IRRIGATION",
+  "analysis": {
+    "issueCategory": "IRRIGATION_LEAK",
+    "assetType": "irrigation",
+    "locationHint": "Greenway near Lot 42",
+    "observations": [
+      "Standing and running water is visible crossing a paved walking path.",
+      "Adjacent turf appears saturated."
+    ],
+    "residentReportedFacts": [
+      "The resident states water has been running across the walking path for about 20 minutes.",
+      "The resident reports the location as the greenway near Lot 42."
+    ],
+    "suggestedUrgency": "MEDIUM",
+    "urgencyReason": "Continuous water across a pedestrian path can create a slip hazard and wastes water, but no immediate structural or electrical hazard is visible.",
+    "confidence": "MEDIUM",
+    "missingInformation": [
+      "The source of the water is not visible in the photo; a view of the irrigation head or valve box would confirm the failure point."
+    ],
+    "requiresHumanReview": true
+  },
+  "draft": {
+    "workOrderTitle": "Irrigation Water Crossing Walking Path Near Lot 42",
+    "workOrderDescription": "Inspect irrigation zone 14 (asset IRR-014) serving the greenway near Lot 42. Water is reported running continuously across the adjacent walking path. A spray nozzle was replaced and zone pressure adjusted on 2026-06-18. Check heads, lateral lines, and the zone valve for a stuck valve or line break, shut the zone down if needed, and note any trip hazard or erosion on the path.",
+    "residentAcknowledgement": "Thank you for reporting the water on the walking path near Lot 42. Your request has been received and is being reviewed by the management team. A manager will confirm next steps shortly. Please use caution on the wet section of the path.",
+    "managerSummary": "The request appears to involve irrigation zone IRR-014, which had nozzle and pressure work in June. There is no warranty on file for this asset, so routing defaults to the preferred irrigation vendor. Confirm whether the zone should be shut off before a technician arrives."
+  }
+}
