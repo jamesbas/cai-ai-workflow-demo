@@ -72,6 +72,7 @@ There is no key configuration step, and there must never be one.
 | `npm run gen:images` | Regenerate placeholder scenario images |
 | `npm run verify:ai` | Validate the Foundry deployment end to end |
 | `npm run smoke` | Run the whole keynote flow against a running server |
+| `npm run screenshots` | Capture the nine-shot stage fallback package |
 | `npm test` | Unit, security, and demo integration tests |
 | `npm run typecheck` | `tsc --noEmit` |
 
@@ -228,7 +229,8 @@ approve, then prints the audit trail.
 - If a live AI call fails, the UI shows a concise recoverable error and the case
   state is unchanged. **It never silently substitutes fixture output.**
   Switch to the prepared screenshots. Do not debug on stage.
-- Store the screenshot fallback set in `screenshots/`.
+- Capture the fallback package with `npm run screenshots -- https://<app-fqdn>`.
+  See [screenshots/README.md](screenshots/README.md).
 
 ---
 
