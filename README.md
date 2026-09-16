@@ -94,6 +94,22 @@ filenames:
 Photos must contain no real resident, no readable licence plate, and no
 personally identifying information.
 
+## Chapter branding
+
+Place the chapter logo at:
+
+```text
+public/brand/cai-chesapeake-logo.jpg
+```
+
+The header renders it automatically when the file is present and renders
+nothing when it is absent, so a missing asset cannot show a broken image during
+the keynote. Theme colours are sampled from that logo.
+
+The logo is event branding for the presenting chapter. The association shown in
+the workflow (`Chesapeake Oaks Community Association`) is synthetic, and the
+header and footer say so, so the demo is not mistaken for an endorsed product.
+
 ---
 
 ## Workflow

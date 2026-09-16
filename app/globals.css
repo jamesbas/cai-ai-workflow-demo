@@ -6,8 +6,11 @@
   --color-line: #cbd5e1;
   --color-surface: #ffffff;
   --color-canvas: #eef2f7;
-  --color-brand: #0b4f8a;
-  --color-brand-soft: #e3edf7;
+  /* Sampled from the Chesapeake Region Chapter, CAI logo. */
+  --color-brand: #16359e;
+  --color-brand-soft: #e7ecfb;
+  --color-accent: #f4b81c;
+  --color-accent-soft: #fdf4dc;
   --color-ai: #6d28d9;
   --color-ai-soft: #f1e9ff;
   --color-system: #0f766e;

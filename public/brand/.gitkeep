@@ -1,0 +1,4 @@
+Place the chapter logo here as: cai-chesapeake-logo.jpg
+
+The header renders it automatically when present, and renders nothing when it
+is absent, so a missing file cannot show a broken image during the keynote.
