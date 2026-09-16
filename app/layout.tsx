@@ -44,14 +44,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="mx-auto w-full max-w-[1500px] flex-1 px-6 py-6">{children}</main>
         <footer className="mt-6 border-t-2 border-line bg-surface">
           <div className="mx-auto max-w-[1500px] px-6 py-4 text-base text-muted">
-            <p className="font-semibold text-ink">
-              Chesapeake Region Chapter, Community Associations Institute
-            </p>
-            <p>
-              Supporting Boards, Community Managers, &amp; Businesses Serving HOAs, Condos, &amp;
-              Co-ops
-            </p>
-            <p className="mt-1">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p className="font-semibold text-ink">
+                  Chesapeake Region Chapter, Community Associations Institute
+                </p>
+                <p>
+                  Supporting Boards, Community Managers, &amp; Businesses Serving HOAs, Condos,
+                  &amp; Co-ops
+                </p>
+              </div>
+              <div className="sm:text-right">
+                <p className="font-semibold text-ink">2026 Annual Symposium and Expo</p>
+                <p>5 October 2026 &middot; Maryland Live! Casino</p>
+              </div>
+            </div>
+            <p className="mt-2 border-t-2 border-line pt-2">
               Independent keynote demonstration. Every community, resident, vendor, asset, and
               maintenance record shown here is synthetic.
             </p>
