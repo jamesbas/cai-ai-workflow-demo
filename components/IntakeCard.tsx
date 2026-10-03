@@ -189,7 +189,7 @@ export function IntakeCard({
               <p className="text-lg text-muted">No photo selected</p>
             )}
           </div>
-          {sampleImage ? <Chip tone="brand">Synthetic demo image</Chip> : null}
+          {sampleImage ? <Chip tone="brand">Staged sample photo</Chip> : null}
         </div>
       </div>
 
