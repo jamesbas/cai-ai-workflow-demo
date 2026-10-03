@@ -49,7 +49,6 @@ az account set --subscription <your-subscription-id>
 Copy-Item .env.local.example .env.local
 
 npm install
-npm run gen:images   # placeholder scenario images
 npm run db:init
 npm run db:seed
 npm run verify:ai    # confirms Entra auth, image input, structured output
@@ -69,7 +68,9 @@ There is no key configuration step, and there must never be one.
 | `npm run db:init` | Create the SQLite file and schema |
 | `npm run db:seed` | Insert/refresh synthetic reference data |
 | `npm run db:reset` | Delete generated cases and audit events, reseed reference data |
-| `npm run gen:images` | Regenerate placeholder scenario images |
+| `npm run gen:images` | Regenerate placeholder images (refuses to overwrite without `--force`) |
+| `npm run strip:images` | Remove EXIF/GPS metadata from the demo photos |
+| `npm run check:scenarios` | Run all three scenarios against live AI and check category/asset |
 | `npm run verify:ai` | Validate the Foundry deployment end to end |
 | `npm run smoke` | Run the whole keynote flow against a running server |
 | `npm run screenshots` | Capture the nine-shot stage fallback package |
@@ -80,19 +81,30 @@ There is no key configuration step, and there must never be one.
 
 ## Demo images
 
-`npm run gen:images` writes schematic placeholder illustrations to
-`public/demo-images/`. They are good enough to rehearse the whole flow, and the
-pool-gate image clearly shows an open, unlatched gate.
-
-**Replace them with staged synthetic photos before the keynote.** Keep the same
-filenames:
+`public/demo-images/` holds real photographs of common-area conditions, staged
+for the keynote. The filenames are fixed; the server only serves these three:
 
 - `pool-gate-broken.jpg`
 - `irrigation-leak.jpg`
 - `trail-light.jpg`
 
-Photos must contain no real resident, no readable licence plate, and no
-personally identifying information.
+When replacing a photo:
+
+1. Keep the exact filename and use a real JPEG.
+2. Run `npm run strip:images`. Phone photos carry EXIF metadata, often
+   including GPS coordinates, and this repository is public.
+3. Run `npm run check:scenarios` against a running dev server and confirm all
+   three still match their expected category and asset.
+4. Redeploy. Images are baked into the container, so a local file change does
+   not reach Azure until you run `./infra/deploy.ps1`.
+5. Recapture the fallback screenshots.
+
+Photos must contain no people, no readable licence plates, no house numbers,
+and no community names or signage that identifies a real association.
+
+`npm run gen:images -- --force` regenerates schematic placeholder illustrations
+if you ever need to start over. It refuses to run without `--force` so it cannot
+silently overwrite the real photos.
 
 ## Chapter branding
 

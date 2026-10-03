@@ -11,6 +11,8 @@
     "db:seed": "tsx scripts/db-seed.ts",
     "db:reset": "tsx scripts/db-reset.ts",
     "gen:images": "tsx scripts/gen-images.ts",
+    "strip:images": "tsx scripts/strip-image-metadata.ts",
+    "check:scenarios": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/check-scenarios.ps1",
     "verify:ai": "tsx scripts/verify-ai.ts",
     "smoke": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/smoke.ps1",
     "screenshots": "tsx scripts/screenshots.ts",

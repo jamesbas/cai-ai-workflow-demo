@@ -13,3 +13,4 @@ data/*.db-wal
 data/*.db-shm
 screenshots/*.png
 !screenshots/.gitkeep
+public/demo-images/*-old.*

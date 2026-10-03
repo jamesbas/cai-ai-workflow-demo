@@ -145,6 +145,16 @@ async function main() {
   const dir = path.join(process.cwd(), "public", "demo-images");
   fs.mkdirSync(dir, { recursive: true });
 
+  const existing = outputs.map(([name]) => name).filter((name) => fs.existsSync(path.join(dir, name)));
+  if (existing.length > 0 && !process.argv.includes("--force")) {
+    console.error(
+      `Refusing to overwrite existing demo images: ${existing.join(", ")}\n` +
+        "These may be the real keynote photos. Pass --force to replace them with placeholders:\n" +
+        "  npm run gen:images -- --force",
+    );
+    process.exit(1);
+  }
+
   for (const [name, svg] of outputs) {
     const file = path.join(dir, name);
     await sharp(Buffer.from(svg)).jpeg({ quality: 88 }).toFile(file);
